@@ -30,11 +30,12 @@ def ispath(path):
 
 def draw_text_watermark(ori_img, text, fontsize, alpha, color, rotation):
     ori_img_h, ori_img_w, ori_img_c = ori_img.shape
+    font_scale = ori_img_w * ori_img_h / (1920 * 1080)
     # 绘制文字水印图片
     watermark_img = np.zeros((int(ori_img_h * 0.5), int(ori_img_w * 0.5), ori_img_c), dtype=np.uint8)
     watermark_img_h, watermark_img_w = watermark_img.shape[:2]
     text_loc = (int(watermark_img_w / 4), int(watermark_img_h / 2))
-    cv.putText(watermark_img, text, text_loc, cv.FONT_HERSHEY_SIMPLEX, fontsize, color, 3)
+    cv.putText(watermark_img, text, text_loc, cv.FONT_HERSHEY_SIMPLEX, fontsize * font_scale, color, 3)
     rotate_matrix = cv.getRotationMatrix2D(text_loc, rotation, 1) # 生成旋转矩阵
     watermark_img_rot = cv.warpAffine(watermark_img, rotate_matrix, (watermark_img.shape[1], watermark_img.shape[0]))
     watermark_img_rot_h, watermark_img_rot_w = watermark_img_rot.shape[:2]#获取旋转后水印的高度、宽度
