@@ -26,7 +26,7 @@ numpy
 脚本接受 3 个参数，示例用法和参数说明如下。
 
 ```shell
-python addwatermarks.py --in-img-dir /home/gohgih/in_data/ --out-img-dir /home/gohgih/data/ --watermark-txt @foo.bar
+python addwatermarks.py --in-img-dir /path/to/in_data/ --out-img-dir /path/to/data/ --watermark-txt @foo.bar
 ```
 
 |参数名称|类型|方向|说明|
